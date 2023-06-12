@@ -9,14 +9,10 @@
 // } 
 
 const calculator = {
-    firstPrecedence: {
-        '*': (x, y) => x * y, 
-        '/': (x, y) => x / y  
-    }, 
-    secondPrecedence: {
-        '+': (x, y) => x + y, 
-        '-': (x, y) => x - y
-    }
+    '*': (x, y) => x * y, 
+    '/': (x, y) => x / y, 
+    '+': (x, y) => x + y, 
+    '-': (x, y) => x - y
 };
 
 const output = document.querySelector('.output'); 
@@ -84,13 +80,33 @@ clearButton.addEventListener('click', () => {
     updateOutput(); 
 }); 
 
-function isOperator(questioned) {
-    for (const key in calculator.firstPrecedence){
-        if (key === questioned){
-            return true; 
-        }
+equateButton.addEventListener('click', () => {
+    conductOperations(equationArr, '*', '/'); 
+    conductOperations(equationArr, '+', '-'); 
+    updateOutput(); 
+});
+
+function conductOperations(arr, ...args){
+    if (isOperator(arr[arr.length - 1])) {
+        arr[arr.length - 1].pop(); 
     }
-    for (const key in calculator.secondPrecedence){
+
+    const ops = args; 
+
+    let lastIndexFound = arr.findIndex((entry) => ops.includes(entry)); 
+ 
+    while (lastIndexFound > -1) {
+        const opFound = arr[lastIndexFound]; 
+        const x = arr[lastIndexFound - 1]; 
+        const y = arr[lastIndexFound + 1];  
+        const result = calculator[opFound](x, y);
+        arr.splice(lastIndexFound-1, 3, result); 
+        lastIndexFound = arr.findIndex((entry) => ops.includes(entry)); 
+    }  
+}
+
+function isOperator(questioned) {
+    for (const key in calculator){
         if (key === questioned){
             return true; 
         }
