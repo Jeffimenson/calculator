@@ -36,7 +36,9 @@ button {
     font-family:monospace;
     text-align: right;
     
-    border: inset 4px black;
+    border: inset 4px rgb(201, 201, 189);
+
+    overflow-x: auto;
 }
 
 section.middle {
