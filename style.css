@@ -1,0 +1,76 @@
+/* Preliminaries */ 
+button {
+    margin: 0;
+    padding: 0;
+    border: solid 2px black;
+}
+
+/*Actual stuff*/
+.container {
+    width: 600px;
+    height: 600px;
+    background-color: lightslategray;
+    border: solid 2px black;
+    border-radius: 6px;
+    padding: 30px; 
+
+    display: flex;
+    flex-direction: column;
+}
+
+.output {
+    margin: 0;
+
+    background-color: ivory;
+
+    font-size: 60px;
+    font-family:monospace;
+    text-align: right;
+    
+    padding: 6px 18px;
+    
+    border-radius: 6px;
+    
+}
+
+section.middle {
+    flex: 1; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+section.numbers {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+}
+
+.numbers button {
+    flex: 0 1 33.333%;
+}
+
+
+
+section.operators {
+    display: flex;
+    flex-direction: column;
+    width: 25%; 
+}
+
+.operators button {
+    flex: 1;
+}
+
+
+
+section.misc {
+}
+
+.misc button {
+
+}
