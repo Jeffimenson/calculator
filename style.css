@@ -67,8 +67,14 @@ section.operators {
 }
 
 
+section.numbers, section.operators {
+    border: solid 2px hotpink;
+    box-sizing: border-box;
+    height: 400px;
+}
 
 section.misc {
+    display: flex;
 }
 
 .misc button {
