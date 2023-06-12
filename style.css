@@ -2,7 +2,7 @@
 button {
     margin: 0;
     padding: 0;
-    border: solid 2px black;
+    border: outset 3px black;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -12,28 +12,31 @@ button {
     width: 600px;
     height: 400px;
     background-color: lightslategray;
-    border: solid 2px black;
+    border: solid 4px black;
     border-radius: 6px;
     padding: 30px; 
 
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+    margin: auto;
 }
 
 .output {
     margin: 0;
+    height: 80px;
+    line-height: 80px; /*Making this same as height centers the text in accordinance to vertical align */ 
+    vertical-align: middle;
+    padding: 0 20px;
 
     background-color: ivory;
 
-    font-size: 60px;
+    font-size: 50px;
     font-family:monospace;
     text-align: right;
     
-    padding: 6px 18px;
-    
-    border-radius: 6px;
-    
+    border: inset 4px black;
 }
 
 section.middle {
@@ -82,3 +85,4 @@ section.misc {
 .misc button {
     flex: 1; 
 }
+
