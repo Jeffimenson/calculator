@@ -67,7 +67,11 @@ deleteButton.addEventListener('click', () => {
     const entryBeforeLast = equationArr[lastIndex - 1];
 
     if (typeof lastEntry === 'number' && !(isOperator(entryBeforeLast) && (''+lastEntry).length === 1)) { // If entryBeforeLast is operator and the number is a single digit for lastEntry, delete gets stuck turning lastEntry to zero so second check was added
-        equationArr[lastIndex] = Math.floor(lastEntry/10); 
+        if (lastEntry < 0) {
+            equationArr[lastIndex] = equationArr[lastIndex] = Math.floor(lastEntry*-1/10)*-1; 
+        } else {
+            equationArr[lastIndex] = Math.floor(lastEntry/10); 
+        }
     } else {
         equationArr.pop(); 
     }  
