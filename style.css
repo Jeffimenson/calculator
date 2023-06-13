@@ -18,15 +18,14 @@ button {
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
 
     margin: auto;
 }
 
 .output {
     margin: 0;
-    height: 80px;
-    line-height: 80px; /*Making this same as height centers the text in accordinance to vertical align */ 
+    height: 70px;
+    line-height: 70px; /*Making this same as height centers the text in accordinance to vertical align */ 
     vertical-align: middle;
     padding: 0 20px;
 
@@ -42,6 +41,7 @@ button {
 }
 
 section.middle {
+    margin-top: 15px;
     flex: 1; 
     display: flex;
     flex-wrap: wrap;
@@ -58,7 +58,7 @@ section.numbers {
 
 }
 
-.numbers button {
+button.number {
     flex: 0 1 33.333%;
     font-size: 30px;
 }
@@ -71,7 +71,7 @@ section.operators {
     width: 25%; 
 }
 
-.operators button {
+button.operator {
     flex: 1;
     font-size: 30px;
 }
@@ -86,5 +86,14 @@ section.misc {
 
 .misc button {
     flex: 1; 
+}
+
+.bottom {
+    height: 13%;
+    display: flex;
+}
+
+.bottom button {
+    flex: 1;
 }
 

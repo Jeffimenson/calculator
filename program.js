@@ -9,6 +9,7 @@
 // } 
 
 const calculator = {
+    '.': (x, y) => +`${x}.${y}`, //special operator
     '*': (x, y) => x * y, 
     '/': (x, y) => x / y, 
     '+': (x, y) => x + y, 
@@ -23,6 +24,8 @@ const operatorButtons = document.querySelectorAll('button.operator');
 const deleteButton = document.querySelector('.delete'); 
 const clearButton = document.querySelector('.clear'); 
 const equateButton = document.querySelector('.equate'); 
+
+const decimalizer = document.querySelector(".special-operator[data-operator='.']"); 
 
 const equationArr = [0]; 
 
@@ -61,17 +64,31 @@ operatorButtons.forEach(button => {
     })
 });
 
+decimalizer.addEventListener('click', () => {
+    const op = '.'; 
+    
+    const lastIndex = equationArr.length - 1; 
+    const lastEntry = equationArr[lastIndex]; 
+    const entryBeforeLast = equationArr[lastIndex - 1];
+
+    if (isOperator(lastEntry)){
+        equationArr[lastIndex] = op; 
+    } else if (entryBeforeLast === op){
+        return; 
+    } else {
+        equationArr.push(op); 
+    }
+    updateOutput(); 
+
+});
+
 deleteButton.addEventListener('click', () => {
     const lastIndex = equationArr.length - 1; 
     const lastEntry = equationArr[lastIndex]; 
     const entryBeforeLast = equationArr[lastIndex - 1];
 
     if (typeof lastEntry === 'number' && !(isOperator(entryBeforeLast) && (''+lastEntry).length === 1)) { // If entryBeforeLast is operator and the number is a single digit for lastEntry, delete gets stuck turning lastEntry to zero so second check was added
-        if (lastEntry < 0) {
-            equationArr[lastIndex] = equationArr[lastIndex] = Math.floor(lastEntry*-1/10)*-1; 
-        } else {
-            equationArr[lastIndex] = Math.floor(lastEntry/10); 
-        }
+        equationArr[lastIndex] = (lastEntry < 0) ? Math.floor(lastEntry*-1/10)*-1 : Math.floor(lastEntry/10); 
     } else {
         equationArr.pop(); 
     }  
@@ -85,15 +102,28 @@ clearButton.addEventListener('click', () => {
 }); 
 
 equateButton.addEventListener('click', () => {
+    if (isOperator(equationArr[equationArr.length - 1])) {
+        equationArr.pop(); 
+    }
+
+    conductOperations(equationArr, '.'); 
     conductOperations(equationArr, '*', '/'); 
     conductOperations(equationArr, '+', '-'); 
+    let result = equationArr[0];
+    if (!Number.isInteger(result)) { //Must split apart a decimal result so it can be deleted properly (adding a decimal operation will recombine it for later us)
+        const stringedResult = (''+result); 
+        const dotInd = stringedResult.indexOf('.');
+        const firstHalf = stringedResult.slice(0, dotInd);  
+        const secondHalf = stringedResult.slice(dotInd+1, stringedResult.length); 
+        equationArr[0] = +firstHalf;  
+        equationArr[1] = '.'; 
+        equationArr[2] = +secondHalf; 
+    }
     updateOutput(); 
 });
 
 function conductOperations(arr, ...args){
-    if (isOperator(arr[arr.length - 1])) {
-        arr[arr.length - 1].pop(); 
-    }
+    
 
     const ops = args; 
 
