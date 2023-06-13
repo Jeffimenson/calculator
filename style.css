@@ -31,7 +31,7 @@ button {
 
     background-color: ivory;
 
-    font-size: 50px;
+    font-size: 40px;
     font-family:monospace;
     text-align: right;
     
@@ -61,8 +61,16 @@ section.numbers {
 button.number {
     flex: 0 1 33.333%;
     font-size: 30px;
-}
 
+    background-color:rgb(117, 116, 116);
+    color: white;
+}
+button.number:hover {
+    background-color:rgb(105, 104, 104);
+}
+button.number:active {
+    background-color:rgb(88, 87, 87);
+}
 
 
 section.operators {
@@ -95,5 +103,18 @@ section.misc {
 
 .bottom button {
     flex: 1;
+}
+
+
+
+.equate {
+    background-color: rgb(238, 174, 13);
+    border-color: darkgoldenrod;
+}
+.equate:hover {
+    background-color: rgb(216, 158, 12);
+}
+.equate:active {
+    background-color: rgb(184, 134, 9);
 }
 

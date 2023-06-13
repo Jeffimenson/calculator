@@ -122,6 +122,8 @@ equateButton.addEventListener('click', () => {
     updateOutput(); 
 });
 
+updateOutput(); 
+
 function conductOperations(arr, ...args){
     
 
@@ -152,4 +154,3 @@ function updateOutput(){
     output.textContent = equationArr.join(''); 
 }
 
-updateOutput(); 
