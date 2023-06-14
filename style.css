@@ -7,6 +7,8 @@ button {
     box-sizing: border-box;
 }
 
+
+
 /*Actual stuff*/
 .container {
     width: 600px;
@@ -22,11 +24,9 @@ button {
     margin: auto;
 }
 
-.output {
+.output-holder {
     margin: 0;
     height: 70px;
-    line-height: 70px; /*Making this same as height centers the text in accordinance to vertical align */ 
-    vertical-align: middle;
     padding: 0 20px;
 
     background-color: ivory;
@@ -38,6 +38,16 @@ button {
     border: inset 4px rgb(201, 201, 189);
 
     overflow-x: auto;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}
+
+.archive {
+    font-size: 12px;
+    height: 13px;
 }
 
 section.middle {
